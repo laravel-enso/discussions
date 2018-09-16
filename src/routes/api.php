@@ -21,6 +21,6 @@ Route::middleware(['web', 'auth', 'core'])
             });
 
         Route::resource('discussions', 'DiscussionController', [
-            'except' => ['edit', 'create']
+            'except' => ['edit', 'create'],
         ]);
     });

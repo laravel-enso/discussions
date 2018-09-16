@@ -24,7 +24,7 @@ class ValidateDiscussionRequest extends FormRequest
 
         $rules = [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
         ];
 
         if ($this->method() === 'POST') {

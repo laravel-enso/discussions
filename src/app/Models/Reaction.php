@@ -34,7 +34,7 @@ class Reaction extends Model
         if ($reaction) {
             $reaction->delete();
 
-            return ;
+            return;
         }
 
         $reactable->reactions()->save(

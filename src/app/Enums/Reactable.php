@@ -10,6 +10,6 @@ class Reactable extends Enum
 {
     protected static $data = [
         'discussion' => Discussion::class,
-        'reply' => Reply::class
+        'reply' => Reply::class,
     ];
 }

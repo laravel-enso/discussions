@@ -17,7 +17,7 @@ class ValidateReplyRequest extends FormRequest
             'discussion_id' => $this->method() === 'POST'
                 ? 'required|exists:discussions,id'
                 : 'nullable',
-            'body' => 'required'
+            'body' => 'required',
         ];
     }
 }
