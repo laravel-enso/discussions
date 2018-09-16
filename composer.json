@@ -1,0 +1,40 @@
+{
+    "name": "laravel-enso/discussions",
+    "description": "Discussion board for Laravel Enso",
+    "keywords": [
+        "laravel-enso",
+        "discussions"
+    ],
+    "homepage": "https://git.xtelecom.com/mishu/enso-discussions",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "laravel-enso/core": "2.15.*"
+    },
+    "require-dev": {
+        "laravel-enso/testhelper": "1.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelEnso\\Discussions\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\Discussions\\AppServiceProvider",
+                "LaravelEnso\\Discussions\\AuthServiceProvider"
+            ],
+            "aliases": {}
+        }
+    }
+}
