@@ -11,10 +11,10 @@
             <div class="content">
                 <span class="has-text-weight-semibold">{{ discussion.title }}</span>
                 <p class="preview">
-                    <span class="has-text-info">{{ discussion.owner.fullName }}</span>
+                    <span class="has-text-info is-bold">{{ discussion.owner.name }}</span>
                     &bull;
                     <small class="has-text-muted">
-                        {{ timeFromNow(discussion.updated_at || comment.created_at) }}
+                        {{ timeFromNow(discussion.updatedAt || discussion.createdAt) }}
                     </small>
                     &bull;
                     {{ discussion.body | string }}
@@ -26,7 +26,6 @@
                 {{ discussion.replies.length }}
             </span>
         </div>
-        <hr v-if="last">
     </article>
 
 </template>

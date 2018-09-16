@@ -14,7 +14,9 @@ class ValidateReplyRequest extends FormRequest
     public function rules()
     {
         return [
-            'discussion_id' => 'required|exists:discussions,id',
+            'discussion_id' => $this->method() === 'POST'
+                ? 'required|exists:discussions,id'
+                : 'nullable',
             'body' => 'required'
         ];
     }

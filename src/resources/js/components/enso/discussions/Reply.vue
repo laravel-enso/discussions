@@ -1,6 +1,7 @@
 <template>
 
-    <article class="media media-reply">
+    <article class="media media-reply"
+        :class="{'box raises-on-hover': !edit && reply.id}">
         <figure class="media-left">
             <p class="image is-48x48">
                 <img class="is-rounded"
@@ -17,10 +18,10 @@
                 @cancel="$emit('cancel'); edit = false;"
                 v-if="edit || !reply.id"/>
             <div class="content" v-else>
-                <strong>{{ reply.owner.fullName }}</strong>
+                <span class="has-text-info is-bold">{{ reply.owner.name }}</span>
                 &bull;
                 <small class="has-text-muted">
-                    {{ timeFromNow(reply.created_at) }}
+                    {{ timeFromNow(reply.updatedAt || reply.createdAt) }}
                 </small>
                 <span v-if="edited">
                     &bull;
@@ -83,11 +84,11 @@ export default {
         avatar() {
             return route(
                 'core.avatars.show',
-                this.reply.owner.avatarId || 'null',
+                this.reply.owner.avatarId,
             );
         },
         edited() {
-            return this.reply.created_at !== this.reply.updated_at;
+            return this.reply.createdAt !== this.reply.updatedAt;
         },
     },
 

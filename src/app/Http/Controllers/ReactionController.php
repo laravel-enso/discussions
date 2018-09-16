@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use LaravelEnso\Discussions\app\Enums\Reactable;
 use LaravelEnso\Discussions\app\Models\Reaction;
+use LaravelEnso\Discussions\app\Http\Resources\Reaction as Resource;
 
 class ReactionController extends Controller
 {
@@ -16,6 +17,10 @@ class ReactionController extends Controller
 
         Reaction::toggle($reactable, $request->only(['userId', 'type']));
 
-        return $reactable->reactions;
+        return Resource::collection(
+            $reactable->reactions()
+                ->with(['createdBy'])
+                ->get()
+        );
     }
 }

@@ -4,16 +4,19 @@ namespace LaravelEnso\Discussions\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use LaravelEnso\ActivityLog\app\Traits\LogActivity;
 use LaravelEnso\Discussions\app\Classes\ConfigMapper;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
 
 class Discussion extends Model
 {
-    use Reactable, CreatedBy;
+    use Reactable, CreatedBy, LogActivity;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
-    protected $appends = ['owner', 'isEditable'];
+    protected $loggableLabel = 'title';
+
+    protected $loggable = ['title', 'body'];
 
     public function discussable()
     {
@@ -34,19 +37,7 @@ class Discussion extends Model
         return $this->hasMany(Reply::class);
     }
 
-    public function getOwnerAttribute()
-    {
-        $owner = [
-            'fullName' => $this->user->fullName,
-            'avatarId' => $this->user->avatarId,
-        ];
-
-        unset($this->user);
-
-        return $owner;
-    }
-
-    public function getIsEditableAttribute()
+    public function isEditable()
     {
         return request()->user()
             && request()->user()->can('handle', $this);
@@ -70,5 +61,10 @@ class Discussion extends Model
             'discussable_type' => (new ConfigMapper($request['discussable_type']))
                                     ->class(),
         ]);
+    }
+
+    public function getLoggableMorph()
+    {
+        return config('enso.discussions.loggableMorph');
     }
 }

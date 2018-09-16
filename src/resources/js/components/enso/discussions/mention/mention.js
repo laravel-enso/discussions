@@ -31,7 +31,7 @@ class Mention {
         this.items = [];
         this.query = null;
         this.template = item =>
-            `<img src="${route('core.avatars.show', item.avatarId)}"> ${this.highlight(item.fullName)}`;
+            `<img src="${route('core.avatars.show', item.avatar.id)}"> ${this.highlight(item.fullName)}`;
     }
 
     setQuillEvents() {

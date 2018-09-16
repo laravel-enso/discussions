@@ -11,8 +11,6 @@ class Reaction extends Model
 
     protected $fillable = ['reactable_id', 'reactable_type', 'type'];
 
-    protected $appends = ['owner'];
-
     public function reactable()
     {
         return $this->morphTo();
@@ -42,17 +40,5 @@ class Reaction extends Model
         $reactable->reactions()->save(
             new self(['type' => $attributes['type']])
         );
-    }
-
-    public function getOwnerAttribute()
-    {
-        $owner = [
-            'fullName' => $this->user->fullName,
-            'avatarId' => $this->user->avatarId,
-        ];
-
-        unset($this->user);
-
-        return $owner;
     }
 }

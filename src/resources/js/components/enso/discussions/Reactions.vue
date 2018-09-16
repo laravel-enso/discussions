@@ -6,7 +6,7 @@
         <figure class="image is-32x32 has-margin-left-small"
             v-for="reaction in reactable.reactions"
             :key="reaction.id"
-            v-tooltip="reaction.owner.fullName">
+            v-tooltip="reaction.owner.name">
             <img class="is-rounded"
                 :src="avatar(reaction.owner.avatarId)">
         </figure>

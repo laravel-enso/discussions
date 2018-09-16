@@ -18,9 +18,8 @@ class TaggableUsers implements Responsable
     private function get()
     {
         return $this->query
-            ->get(['id', 'first_name', 'last_name'])
-            ->each
-            ->append('avatarId');
+            ->with(['avatar'])
+            ->get(['id', 'first_name', 'last_name']);
     }
 
     private function query()

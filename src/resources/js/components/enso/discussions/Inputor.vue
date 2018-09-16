@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="box">
         <input class="input control is-large message-title"
             v-model="message.title"
             :placeholder="__('Title...')"
@@ -8,16 +8,15 @@
         <quill-editor :options="options"
             ref="quillEditor"
             v-model="message.body"/>
-            <form ref="inputForm"
-                @submit.prevent>
-                <input id="file-upload"
-                    class="is-invisible"
-                    type="file"
-                    ref="fileInput"
-                    @change="upload($event)"
-                    v-if="attachments">
-            </form>
-        <hr>
+        <form ref="inputForm"
+            @submit.prevent>
+            <input id="file-upload"
+                class="is-invisible"
+                type="file"
+                ref="fileInput"
+                @change="upload($event)"
+                v-if="attachments">
+        </form>
         <button class="button"
             @click="$emit('cancel')">
             <span>{{ __('Cancel') }}</span>
@@ -48,14 +47,15 @@ import 'quill/dist/quill.core.css';
 import 'quill/dist/quill.snow.css';
 
 import { quillEditor } from 'vue-quill-editor';
-import fontawesome from '@fortawesome/fontawesome';
-import { faCheck, faBan } from '@fortawesome/fontawesome-free-solid/shakable.es';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCheck, faBan } from '@fortawesome/free-solid-svg-icons';
 
 import './mention/mention';
 import './upload/upload';
 import './mention/mention.scss';
 
-fontawesome.library.add(faCheck, faBan);
+library.add(faCheck, faBan);
 
 export default {
     name: 'Inputor',

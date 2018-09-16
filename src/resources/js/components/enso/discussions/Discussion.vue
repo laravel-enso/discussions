@@ -13,10 +13,10 @@
                         <h4 class="title is-4 is-marginless">
                             {{ discussion.title }}
                         </h4>
-                        <span class="has-text-info">{{ discussion.owner.fullName }}</span>
+                        <span class="has-text-info is-bold">{{ discussion.owner.name }}</span>
                         &bull;
                         <small class="has-text-muted">
-                            {{ timeFromNow(discussion.updated_at || comment.created_at) }}
+                            {{ timeFromNow(discussion.updatedAt || discussion.createdAt) }}
                         </small>
                         <span v-if="edited">
                             &bull;
@@ -38,7 +38,6 @@
                     </button>
                 </div>
             </article>
-            <hr class="has-margin-top-medium has-margin-bottom-medium">
             <div class="is-flex is-pulled-right"
                 v-if="discussion.isEditable">
                 <button class="button is-naked is-small has-margin-right-small"
@@ -73,14 +72,12 @@
                 {{ __('Replies') }}
             </span>
         </h5>
-        <reply class="box raises-on-hover"
-            v-for="(reply, index) in discussion.replies"
+        <reply v-for="(reply, index) in discussion.replies"
             :key="index"
             :reply="reply"
             @delete="destroy(reply, index)"
             @update="update(reply, index)"/>
-        <reply class="box raises-on-hover"
-            :reply="reply"
+        <reply :reply="reply"
             @store="store()"
             @cancel="reply = null;"
             v-if="reply"/>
@@ -95,19 +92,19 @@
             </span>
         </button>
     </div>
-</div></template>
+</template>
 
 <script>
 
 import { mapState } from 'vuex';
-import fontawesome from '@fortawesome/fontawesome';
-import { faArrowLeft, faTrashAlt, faPencilAlt } from '@fortawesome/fontawesome-free-solid/shakable.es';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowLeft, faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import formatDistance from '../../../modules/enso/plugins/date-fns/formatDistance';
 import Reply from './Reply.vue';
 import Reactions from './Reactions.vue';
 import Popover from '../bulma/Popover.vue';
 
-fontawesome.library.add(faArrowLeft, faTrashAlt, faPencilAlt);
+library.add(faArrowLeft, faTrashAlt, faPencilAlt);
 
 export default {
     name: 'Discussion',
@@ -137,7 +134,7 @@ export default {
             );
         },
         edited() {
-            return this.discussion.created_at !== this.discussion.updated_at;
+            return this.discussion.createdAt !== this.discussion.updatedAt;
         },
     },
 
@@ -168,8 +165,8 @@ export default {
                 discussion_id: this.discussion.id,
                 body: null,
                 owner: {
-                    fullName: this.user.fullName,
-                    avatarId: this.user.avatarId,
+                    name: this.user.name,
+                    avatarId: this.user.avatar.id,
                 },
             };
         },

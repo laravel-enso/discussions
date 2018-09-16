@@ -14,8 +14,6 @@ class Reply extends Model
 
     protected $fillable = ['discussion_id', 'body'];
 
-    protected $appends = ['owner', 'isEditable'];
-
     public function discussion()
     {
         return $this->belongsTo(Discussion::class);
@@ -30,19 +28,7 @@ class Reply extends Model
         );
     }
 
-    public function getOwnerAttribute()
-    {
-        $owner = [
-            'fullName' => $this->user->fullName,
-            'avatarId' => $this->user->avatarId,
-        ];
-
-        unset($this->user);
-
-        return $owner;
-    }
-
-    public function getIsEditableAttribute()
+    public function isEditable()
     {
         return request()->user()
             && request()->user()->can('handle', $this);

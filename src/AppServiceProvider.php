@@ -13,11 +13,11 @@ class AppServiceProvider extends ServiceProvider
         ], 'discussions-config');
 
         $this->publishes([
-            __DIR__.'/resources/assets/js' => resource_path('assets/js'),
+            __DIR__.'/resources/js' => resource_path('js'),
         ], 'discussions-assets');
 
         $this->publishes([
-            __DIR__.'/resources/assets/js' => resource_path('assets/js'),
+            __DIR__.'/resources/js' => resource_path('js'),
         ], 'enso-assets');
 
         $this->mergeConfigFrom(__DIR__.'/config/discussions.php', 'enso.discussions');
