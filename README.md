@@ -15,7 +15,7 @@ Discussions for [Laravel Enso](https://github.com/laravel-enso/Enso).
 - users can tag other users in their posts
 - the tagged users receive notifications
 - users can show their appreciation for topics that they like with 'claps'
-- powerfull what-you-see-is-what-you-get text editor
+- powerful what-you-see-is-what-you-get text editor
 - within Enso, the Discussions module is integrated with the activity log
 - can be attached to any other model, via using a polymorphic relationship
 - a `Discussible` trait is available, in order to make it easy to add discussions to a model 
