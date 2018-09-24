@@ -9,9 +9,27 @@
 
 Discussions for [Laravel Enso](https://github.com/laravel-enso/Enso).
 
+[![Watch the demo](https://laravel-enso.github.io/discussions/screenshots/bulma_001_thumb.png)](https://laravel-enso.github.io/discussions/videos/bulma_discussions.mp4)
+
+
+<sup>click on the photo to view a short demo in compatible browsers</sup>
+
 ### Features
 
-Soon...
+- discussions are grouped around topics
+- users can tag other users in their posts
+- the tagged users receive notifications (WIP)
+- users can show their appreciation for topics that they like with 'claps'
+- powerful what-you-see-is-what-you-get text editor, based on the excellent [Quill](https://quilljs.com/) library
+- within Enso, the Discussions module is integrated with the activity log
+- can be attached to any other model, via using a polymorphic relationship
+- a `Discussible` trait is available, in order to make it easy to add discussions to a model 
+- changes to the discussions and posts are enforced through policies, where changes can be made by the original poster or an administrator
+- uses its own suite of specialized Bulma styled VueJS components for smooth integration with the rest of the application  
+
+### Configuration & Usage
+
+Be sure to check out the full documentation for this package available at [docs.laravel-enso.com](https://docs.laravel-enso.com/packages/discussions.html)
 
 ### Contributions
 
