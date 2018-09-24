@@ -2,13 +2,17 @@
 
 namespace LaravelEnso\Discussions\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Models\Discussion;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LaravelEnso\Discussions\app\Http\Resources\Discussion as Resource;
 use LaravelEnso\Discussions\app\Http\Requests\ValidateDiscussionRequest;
 
 class DiscussionController extends Controller
 {
+    use AuthorizesRequests, ValidatesRequests;
+
     public function index(ValidateDiscussionRequest $request)
     {
         return Resource::collection(

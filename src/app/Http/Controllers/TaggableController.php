@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Discussions\app\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Http\Responses\TaggableUsers;
 
 class TaggableController extends Controller
