@@ -15,7 +15,7 @@ class CreateReactionsTable extends Migration
 
             $table->tinyInteger('type');
 
-            $table->integer('created_by')->unsigned();
+            $table->integer('created_by')->unsigned()->nullable();
             $table->foreign('created_by')->references('id')
                 ->on('users');
 
