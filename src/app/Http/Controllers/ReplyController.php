@@ -4,14 +4,13 @@ namespace LaravelEnso\Discussions\app\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Models\Reply;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LaravelEnso\Discussions\app\Http\Resources\Reply as Resource;
 use LaravelEnso\Discussions\app\Http\Requests\ValidateReplyRequest;
 
 class ReplyController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
 
     public function store(ValidateReplyRequest $request)
     {

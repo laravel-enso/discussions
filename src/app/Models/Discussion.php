@@ -4,13 +4,12 @@ namespace LaravelEnso\Discussions\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
-use LaravelEnso\ActivityLog\app\Traits\LogActivity;
-use LaravelEnso\Discussions\app\Classes\ConfigMapper;
+use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
 
 class Discussion extends Model
 {
-    use Reactable, CreatedBy, LogActivity;
+    use Reactable, CreatedBy, LogsActivity;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
@@ -43,24 +42,10 @@ class Discussion extends Model
             && request()->user()->can('handle', $this);
     }
 
-    public function scopeFor($query, $request)
+    public function scopeFor($query, $params)
     {
-        $query->whereDiscussableId($request['discussable_id'])
-            ->whereDiscussableType(
-                (new ConfigMapper($request['discussable_type']))
-                    ->class()
-            );
-    }
-
-    public function store($request)
-    {
-        return $this->create([
-            'title' => $request['title'],
-            'body' => $request['body'],
-            'discussable_id' => $request['discussable_id'],
-            'discussable_type' => (new ConfigMapper($request['discussable_type']))
-                                    ->class(),
-        ]);
+        $query->whereDiscussableId($params['discussable_id'])
+            ->whereDiscussableType($params['discussable_type']);
     }
 
     public function getLoggableMorph()

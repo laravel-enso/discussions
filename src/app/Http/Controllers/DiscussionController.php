@@ -4,16 +4,16 @@ namespace LaravelEnso\Discussions\app\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Models\Discussion;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LaravelEnso\Discussions\app\Http\Resources\Discussion as Resource;
 use LaravelEnso\Discussions\app\Http\Requests\ValidateDiscussionRequest;
+use LaravelEnso\Discussions\app\Http\Requests\ValidateDiscussionIndexRequest;
 
 class DiscussionController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
 
-    public function index(ValidateDiscussionRequest $request)
+    public function index(ValidateDiscussionIndexRequest $request)
     {
         return Resource::collection(
             Discussion::with([
@@ -26,10 +26,10 @@ class DiscussionController extends Controller
             );
     }
 
-    public function store(ValidateDiscussionRequest $request, Discussion $discussion)
+    public function store(ValidateDiscussionRequest $request)
     {
         return new Resource(
-            $discussion->store($request->validated())
+            Discussion::create($request->validated())
                 ->load([
                     'createdBy', 'reactions.createdBy', 'replies.createdBy',
                     'replies.reactions.createdBy',

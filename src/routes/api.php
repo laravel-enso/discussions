@@ -15,9 +15,6 @@ Route::middleware(['web', 'auth', 'core'])
 
                 Route::post('react', 'ReactionController')
                     ->name('react');
-
-                Route::get('taggableUsers', 'TaggableController')
-                    ->name('taggableUsers');
             });
 
         Route::resource('discussions', 'DiscussionController', [
