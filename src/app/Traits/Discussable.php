@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Discussions\app\Traits;
 
-use LaravelEnso\CommentsManager\app\Models\Discussion;
+use LaravelEnso\Discussions\app\Models\Discussion;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 trait Discussable
