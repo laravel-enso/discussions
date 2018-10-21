@@ -7,13 +7,12 @@ use LaravelEnso\Discussions\app\Models\Discussion;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use LaravelEnso\Discussions\app\Http\Resources\Discussion as Resource;
 use LaravelEnso\Discussions\app\Http\Requests\ValidateDiscussionRequest;
-use LaravelEnso\Discussions\app\Http\Requests\ValidateDiscussionIndexRequest;
 
 class DiscussionController extends Controller
 {
     use AuthorizesRequests;
 
-    public function index(ValidateDiscussionIndexRequest $request)
+    public function index(ValidateDiscussionRequest $request)
     {
         return Resource::collection(
             Discussion::with([
