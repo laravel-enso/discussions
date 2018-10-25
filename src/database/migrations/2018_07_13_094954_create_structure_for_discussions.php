@@ -4,8 +4,6 @@ use LaravelEnso\StructureManager\app\Classes\StructureMigration;
 
 class CreateStructureForDiscussions extends StructureMigration
 {
-    protected $permissionGroup = ['name' => 'core.discussions', 'description' => 'Discussions Permission Group'];
-
     protected $permissions = [
         ['name' => 'core.discussions.index', 'description' => 'Show index for discussion', 'type' => 0, 'is_default' => true],
         ['name' => 'core.discussions.store', 'description' => 'Store a new discussion', 'type' => 1, 'is_default' => true],
