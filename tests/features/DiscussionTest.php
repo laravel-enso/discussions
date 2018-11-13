@@ -29,7 +29,12 @@ class DiscussionTest extends TestCase
 
         $this->testModel = $this->discussionModel();
 
-        $this->postParams = $this->postParams();
+        $this->postParams = factory(Discussion::class)->make([
+            'discussable_id' => DiscussionTestModel::create([
+                    'name' => 'discussable'
+                ])->id,
+            'discussable_type' => DiscussionTestModel::class,
+        ]);
     }
 
     /** @test */
@@ -66,8 +71,12 @@ class DiscussionTest extends TestCase
     /** @test */
     public function can_delete_discussion()
     {
+        $this->assertNotNull($this->testModel);
+
         $this->delete(route('core.discussions.destroy', $this->testModel->id, false))
             ->assertStatus(200);
+
+        $this->assertNull($this->testModel->fresh());
     }
 
     /** @test */
@@ -109,16 +118,6 @@ class DiscussionTest extends TestCase
         ]);
     }
 
-    private function postParams()
-    {
-        return factory(Discussion::class)->make([
-            'discussable_id' => DiscussionTestModel::create([
-                    'name' => 'discussable'
-                ])->id,
-            'discussable_type' => DiscussionTestModel::class,
-        ]);
-    }
-
     private function anotherUser()
     {
         return factory(User::class)->create([
@@ -126,6 +125,7 @@ class DiscussionTest extends TestCase
         ]);
     }
 }
+
 class DiscussionTestModel extends Model
 {
     use Discussable;

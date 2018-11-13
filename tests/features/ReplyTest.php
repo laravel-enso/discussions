@@ -23,7 +23,9 @@ class ReplyTest extends TestCase
 
         $this->testModel = $this->model();
 
-        $this->postParams = $this->postParams();
+        $this->postParams =  factory(Reply::class)->make([
+            'discussion_id' => factory(Discussion::class)->create()->id
+        ]);
     }
 
     /** @test */
@@ -72,13 +74,6 @@ class ReplyTest extends TestCase
     private function model()
     {
         return factory(Reply::class)->create([
-            'discussion_id' => factory(Discussion::class)->create()->id
-        ]);
-    }
-
-    private function postParams()
-    {
-        return factory(Reply::class)->make([
             'discussion_id' => factory(Discussion::class)->create()->id
         ]);
     }
