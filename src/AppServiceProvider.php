@@ -20,6 +20,14 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/resources/js' => resource_path('js'),
         ], 'enso-assets');
 
+        $this->publishes([
+            __DIR__.'/database/factories' => database_path('factories'),
+        ], 'enso-factories');
+
+        $this->publishes([
+            __DIR__.'/database/factories' => database_path('factories'),
+        ], 'discussions-factory');
+
         $this->mergeConfigFrom(__DIR__.'/config/discussions.php', 'enso.discussions');
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
