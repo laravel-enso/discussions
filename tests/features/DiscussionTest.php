@@ -27,9 +27,7 @@ class DiscussionTest extends TestCase
         
         $this->createTestTable();
 
-        $this->testModel = $this->discussionModel();
-
-        $this->postParams = factory(Discussion::class)->make([
+        $this->testModel = factory(Discussion::class)->create([
             'discussable_id' => DiscussionTestModel::create([
                     'name' => 'discussable'
                 ])->id,
@@ -42,13 +40,13 @@ class DiscussionTest extends TestCase
     {
         $this->get(route('core.discussions.index', $this->testModel->toArray(), false))
             ->assertStatus(200)
-            ->assertJsonStructure([['body']]);
+            ->assertJsonFragment(['body' => $this->testModel->body]);
     }
 
     /** @test */
     public function can_store_discussion()
     {
-        $this->post(route('core.discussions.store'), $this->postParams->toArray() + [
+        $this->post(route('core.discussions.store'), $this->postParams()->toArray() + [
                 'path' => $this->faker->url
         ])->assertStatus(201);
     }
@@ -108,9 +106,9 @@ class DiscussionTest extends TestCase
         return $this;
     }
 
-    private function discussionModel()
+    private function postParams()
     {
-        return factory(Discussion::class)->create([
+        return factory(Discussion::class)->make([
             'discussable_id' => DiscussionTestModel::create([
                     'name' => 'discussable'
                 ])->id,
