@@ -10,7 +10,6 @@ class ReactionTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $testModel;
     const ReactableType = 'discussion';
 
     protected function setUp()

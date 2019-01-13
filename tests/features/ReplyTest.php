@@ -23,7 +23,7 @@ class ReplyTest extends TestCase
 
         $this->testModel = $this->model();
 
-        $this->postParams =  factory(Reply::class)->make([
+        $this->postParams = factory(Reply::class)->make([
             'discussion_id' => factory(Discussion::class)->create()->id
         ]);
     }
@@ -62,7 +62,7 @@ class ReplyTest extends TestCase
 
         $this->delete(route('core.discussions.destroyReply', $this->testModel->id, false))
             ->assertStatus(403);
-        
+
         $this->testModel->body = 'edited';
 
         $this->patch(
