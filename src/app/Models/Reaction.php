@@ -4,10 +4,11 @@ namespace LaravelEnso\Discussions\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
 
 class Reaction extends Model
 {
-    use CreatedBy;
+    use CreatedBy, SystemConnection;
 
     protected $fillable = ['reactable_id', 'reactable_type', 'type'];
 

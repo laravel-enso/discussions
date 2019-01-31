@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
+use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
 
 class Discussion extends Model
 {
-    use Reactable, CreatedBy, LogsActivity;
+    use Reactable, CreatedBy, LogsActivity, SystemConnection;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
