@@ -5,11 +5,11 @@ namespace LaravelEnso\Discussions\app\Models;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
-use LaravelEnso\Multitenancy\app\Traits\SystemConnection;
+use LaravelEnso\Multitenancy\app\Traits\MixedConnection;
 
 class Reply extends Model
 {
-    use Reactable, CreatedBy, SystemConnection;
+    use Reactable, CreatedBy, MixedConnection;
 
     protected $table = 'discussion_replies';
 
