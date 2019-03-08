@@ -14,7 +14,7 @@ class DiscussionTest extends TestCase
 
     private $testModel;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -12,7 +12,7 @@ class ReactionTest extends TestCase
 
     const ReactableType = 'discussion';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
