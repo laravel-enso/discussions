@@ -13,14 +13,6 @@ class AppServiceProvider extends ServiceProvider
         ], 'discussions-config');
 
         $this->publishes([
-            __DIR__.'/resources/js' => resource_path('js'),
-        ], 'discussions-assets');
-
-        $this->publishes([
-            __DIR__.'/resources/js' => resource_path('js'),
-        ], 'enso-assets');
-
-        $this->publishes([
             __DIR__.'/database/factories' => database_path('factories'),
         ], 'enso-factories');
 
