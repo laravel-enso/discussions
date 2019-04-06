@@ -24,15 +24,11 @@ class DiscussionTest extends TestCase
 
         $this->seed()
             ->actingAs(User::first());
-        
+
         $this->createTestTable();
 
-        $this->testModel = factory(Discussion::class)->create([
-            'discussable_id' => DiscussionTestModel::create([
-                    'name' => 'discussable'
-                ])->id,
-            'discussable_type' => DiscussionTestModel::class,
-        ]);
+        $this->testModel = $this->postParams();
+        $this->testModel->save();
     }
 
     /** @test */
@@ -46,9 +42,10 @@ class DiscussionTest extends TestCase
     /** @test */
     public function can_store_discussion()
     {
-        $this->post(route('core.discussions.store'), $this->postParams()->toArray() + [
-                'path' => $this->faker->url
-        ])->assertStatus(201);
+        $this->post(
+            route('core.discussions.store'),
+            $this->postParams()->toArray() + ['path' => $this->faker->url]
+        )->assertStatus(201);
     }
 
     /** @test */
@@ -58,14 +55,12 @@ class DiscussionTest extends TestCase
 
         $this->patch(
             route('core.discussions.update', $this->testModel->id, false),
-            $this->testModel->toArray() + [
-                'path' => $this->faker->url,
-            ]
+            $this->testModel->toArray() + ['path' => $this->faker->url]
         )->assertStatus(200);
 
         $this->assertEquals($this->testModel->fresh()->body, 'edited');
     }
-    
+
     /** @test */
     public function can_delete_discussion()
     {
@@ -84,14 +79,12 @@ class DiscussionTest extends TestCase
 
         $this->delete(route('core.discussions.destroy', $this->testModel->id, false))
             ->assertStatus(403);
-        
+
         $this->testModel->body = 'edited';
 
         $this->patch(
             route('core.discussions.update', $this->testModel->id, false),
-            $this->testModel->toArray() + [
-                'path' => $this->faker->url,
-            ]
+            $this->testModel->toArray() + ['path' => $this->faker->url]
         )->assertStatus(403);
     }
 
@@ -108,11 +101,10 @@ class DiscussionTest extends TestCase
 
     private function postParams()
     {
-        return factory(Discussion::class)->make([
-            'discussable_id' => DiscussionTestModel::create([
-                    'name' => 'discussable'
-                ])->id,
-            'discussable_type' => DiscussionTestModel::class,
+        return factory(Discussion::class)
+            ->make([
+                'discussable_id' => DiscussionTestModel::create(['name' => 'discussable'])->id,
+                'discussable_type' => DiscussionTestModel::class,
         ]);
     }
 

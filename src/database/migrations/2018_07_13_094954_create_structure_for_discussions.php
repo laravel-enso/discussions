@@ -15,8 +15,4 @@ class CreateStructureForDiscussions extends StructureMigration
         ['name' => 'core.discussions.destroyReply', 'description' => 'Delete reply', 'type' => 1, 'is_default' => true],
         ['name' => 'core.discussions.react', 'description' => 'React on reactable', 'type' => 1, 'is_default' => true],
     ];
-
-    protected $menu = null;
-
-    protected $parentMenu = '';
 }

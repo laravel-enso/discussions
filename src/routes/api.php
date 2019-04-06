@@ -17,7 +17,6 @@ Route::middleware(['web', 'auth', 'core'])
                     ->name('react');
             });
 
-        Route::resource('discussions', 'DiscussionController', [
-            'except' => ['edit', 'create'],
-        ]);
+        Route::resource('discussions', 'DiscussionController')
+            ->except('edit', 'create');
     });

@@ -8,6 +8,23 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadDependencies()
+            ->publishDependencies();
+    }
+
+    private function loadDependencies()
+    {
+        $this->mergeConfigFrom(__DIR__.'/config/discussions.php', 'enso.discussions');
+
+        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        return $this;
+    }
+
+    private function publishDependencies()
+    {
         $this->publishes([
             __DIR__.'/config' => config_path('enso'),
         ], 'discussions-config');
@@ -19,14 +36,5 @@ class AppServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/database/factories' => database_path('factories'),
         ], 'discussions-factory');
-
-        $this->mergeConfigFrom(__DIR__.'/config/discussions.php', 'enso.discussions');
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-    }
-
-    public function register()
-    {
-        //
     }
 }

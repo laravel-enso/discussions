@@ -9,6 +9,8 @@ class ValidateDiscussionRequest extends FormRequest
 {
     public function authorize()
     {
+        $this->checkParams();
+
         return true;
     }
 
@@ -33,18 +35,12 @@ class ValidateDiscussionRequest extends FormRequest
             : $rules;
     }
 
-    public function withValidator($validator)
+    public function checkParams()
     {
-        if ($this->method() === 'PATCH') {
-            return;
+        if ($this->method() !== 'PATCH' && ! class_exists($this->discussable_type)) {
+            throw new DiscussionException(
+                'The "discussable_type" property must be a valid model class'
+            );
         }
-
-        $validator->after(function ($validator) {
-            if (! class_exists($this->discussable_type)) {
-                throw new DiscussionException(
-                    'The "discussable_type" property must be a valid model class'
-                );
-            }
-        });
     }
 }

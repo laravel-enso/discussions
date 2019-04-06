@@ -45,7 +45,7 @@ class ReplyTest extends TestCase
             $this->testModel->toArray()
         )->assertStatus(200);
 
-        $this->assertEquals($this->testModel->fresh()->body, 'edited');
+        $this->assertEquals($this->testModel->body, $this->testModel->fresh()->body);
     }
 
     /** @test */
@@ -69,6 +69,8 @@ class ReplyTest extends TestCase
             route('core.discussions.updateReply', $this->testModel->id, false),
             $this->testModel->toArray()
         )->assertStatus(403);
+
+        $this->assertNotEquals($this->testModel->body, $this->testModel->fresh()->body);
     }
 
     private function model()
@@ -80,8 +82,6 @@ class ReplyTest extends TestCase
 
     private function anotherUser()
     {
-        return factory(User::class)->create([
-            'is_active' => true,
-        ]);
+        return factory(User::class)->create(['is_active' => true]);
     }
 }

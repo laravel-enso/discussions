@@ -38,8 +38,8 @@ class Discussion extends Model
 
     public function isEditable()
     {
-        return request()->user()
-            && request()->user()->can('handle', $this);
+        return auth()->check()
+            && auth()->user()->can('handle', $this);
     }
 
     public function scopeFor($query, $params)

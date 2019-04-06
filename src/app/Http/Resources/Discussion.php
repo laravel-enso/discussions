@@ -25,12 +25,11 @@ class Discussion extends JsonResource
 
     private function taggedUserList()
     {
-        return $this->taggedUsers
-            ->map(function ($user) {
-                return [
-                    'id' => $user->id,
-                    'fullName' => $user->fullName,
-                ];
-            });
+        return $this->taggedUsers->map(function ($user) {
+            return [
+                'id' => $user->id,
+                'fullName' => $user->fullName,
+            ];
+        });
     }
 }
