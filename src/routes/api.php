@@ -1,22 +1,26 @@
 <?php
 
 Route::middleware(['web', 'auth', 'core'])
-    ->prefix('api/core')->as('core.')
+    ->prefix('api/core/discussions')->as('core.discussions.')
     ->namespace('LaravelEnso\Discussions\app\Http\Controllers')
     ->group(function () {
-        Route::prefix('discussions')->as('discussions.')
+        Route::namespace('Discussion')
             ->group(function () {
-                Route::post('storeReply', 'ReplyController@store')
-                    ->name('storeReply');
-                Route::patch('updateReply/{reply}', 'ReplyController@update')
-                    ->name('updateReply');
-                Route::delete('destroyReply/{reply}', 'ReplyController@destroy')
-                    ->name('destroyReply');
-
-                Route::post('react', 'ReactionController')
-                    ->name('react');
+                Route::get('', 'Index')->name('index');
+                Route::post('', 'Store')->name('store');
+                Route::patch('{discussion}', 'Update')->name('update');
+                Route::delete('{discussion}', 'Destroy')->name('destroy');
             });
 
-        Route::resource('discussions', 'DiscussionController')
-            ->except('edit', 'create');
+        Route::namespace('Reaction')
+            ->group(function () {
+                Route::post('react', 'React')->name('react');
+            });
+
+        Route::namespace('Reply')
+            ->group(function () {
+                Route::post('storeReply', 'Store')->name('storeReply');
+                Route::patch('updateReply/{reply}', 'Update')->name('updateReply');
+                Route::delete('destroyReply/{reply}', 'Destroy')->name('destroyReply');
+            });
     });

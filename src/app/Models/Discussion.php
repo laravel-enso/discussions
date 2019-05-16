@@ -4,18 +4,15 @@ namespace LaravelEnso\Discussions\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
-use LaravelEnso\ActivityLog\app\Traits\LogsActivity;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
 
 class Discussion extends Model
 {
-    use Reactable, CreatedBy, LogsActivity;
+    use Reactable, CreatedBy;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
-    protected $loggableLabel = 'title';
-
-    protected $loggable = ['title', 'body'];
+    protected $touches = ['discussable'];
 
     public function discussable()
     {

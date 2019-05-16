@@ -4,7 +4,7 @@ namespace LaravelEnso\Discussions\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateReplyRequest extends FormRequest
+class ValidateDiscussionUpdate extends FormRequest
 {
     public function authorize()
     {
@@ -14,9 +14,7 @@ class ValidateReplyRequest extends FormRequest
     public function rules()
     {
         return [
-            'discussion_id' => $this->method() === 'POST'
-                ? 'required|exists:discussions,id'
-                : 'nullable',
+            'title' => 'required',
             'body' => 'required',
         ];
     }

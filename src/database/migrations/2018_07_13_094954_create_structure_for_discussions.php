@@ -1,8 +1,8 @@
 <?php
 
-use LaravelEnso\StructureManager\app\Classes\StructureMigration;
+use LaravelEnso\Migrator\app\Database\Migration;
 
-class CreateStructureForDiscussions extends StructureMigration
+class CreateStructureForDiscussions extends Migration
 {
     protected $permissions = [
         ['name' => 'core.discussions.index', 'description' => 'Show index for discussion', 'type' => 0, 'is_default' => true],

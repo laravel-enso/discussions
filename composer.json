@@ -5,7 +5,7 @@
         "laravel-enso",
         "discussions"
     ],
-    "homepage": "https://git.xtelecom.com/mishu/enso-discussions",
+    "homepage": "https://github.com/laravel-enso/discussions",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -18,11 +18,10 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel-enso/activitylog": "2.0.*",
-        "laravel-enso/core": "4.2.*",
-        "laravel-enso/helpers": "1.10.*",
-        "laravel-enso/structuremanager": "3.0.*",
-        "laravel-enso/trackwho": "1.7.*"
+        "laravel-enso/core": "4.3.*",
+        "laravel-enso/helpers": "1.11.*",
+        "laravel-enso/migrator": "1.0.*",
+        "laravel-enso/track-who": "1.8.*"
     },
     "autoload": {
         "psr-4": {
