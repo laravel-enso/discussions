@@ -4,11 +4,12 @@ namespace LaravelEnso\Discussions\app\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use LaravelEnso\Helpers\app\Traits\UpdateOnTouch;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
 
 class Discussion extends Model
 {
-    use Reactable, CreatedBy;
+    use CreatedBy, Reactable, UpdateOnTouch;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
