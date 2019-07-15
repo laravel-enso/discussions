@@ -12,7 +12,7 @@ class Reply extends JsonResource
         return [
             'id' => $this->id,
             'body' => $this->body,
-            'owner' => new TrackWho($this->whenLoaded('createdBy.avatar')),
+            'owner' => new TrackWho($this->whenLoaded('createdBy')),
             'reactions' => Reaction::collection($this->whenLoaded('reactions')),
             'isEditable' => $this->isEditable(),
             'createdAt' => $this->created_at->toDatetimeString(),

@@ -12,7 +12,7 @@ class Reaction extends JsonResource
         return [
             'id' => $this->id,
             'type' => $this->type,
-            'owner' => new TrackWho($this->whenLoaded('createdBy.avatar')),
+            'owner' => new TrackWho($this->whenLoaded('createdBy')),
         ];
     }
 }

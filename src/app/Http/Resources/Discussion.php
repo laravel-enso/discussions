@@ -13,7 +13,7 @@ class Discussion extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-            'owner' => new TrackWho($this->whenLoaded('createdBy.avatar')),
+            'owner' => new TrackWho($this->whenLoaded('createdBy')),
             // 'taggedUsers' => $this->whenLoaded('taggedUsers', $this->taggedUserList()),
             'isEditable' => $this->isEditable(),
             'reactions' => Reaction::collection($this->whenLoaded('reactions')),
