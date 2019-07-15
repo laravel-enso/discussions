@@ -29,7 +29,7 @@ trait Discussable
     {
         return $this->morphOne(Discussion::class, 'discussable');
     }
-    
+
     public function discussions()
     {
         return $this->morphMany(Discussion::class, 'discussable');

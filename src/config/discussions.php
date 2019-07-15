@@ -1,6 +1,5 @@
 <?php
 
-
 return [
     'onDelete' => 'restrict',
     'loggableMorph' => [
