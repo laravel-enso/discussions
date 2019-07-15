@@ -19,7 +19,7 @@ class Update extends Controller
         $reply->update($request->validated());
 
         return new Resource(
-            $reply->load(['createdBy', 'reactions.createdBy'])
+            $reply->load(['createdBy.avatar', 'reactions.createdBy.avatar'])
         );
     }
 }

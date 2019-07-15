@@ -19,7 +19,7 @@ class React extends Controller
 
         return Resource::collection(
             $reactable->reactions()
-                ->with(['createdBy'])
+                ->with(['createdBy.avatar'])
                 ->get()
         );
     }

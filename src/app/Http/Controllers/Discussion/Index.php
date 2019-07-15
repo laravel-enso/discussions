@@ -13,8 +13,8 @@ class Index extends Controller
     {
         return Resource::collection(
             Discussion::with([
-                    'createdBy', 'reactions.createdBy', 'replies.createdBy',
-                    'replies.reactions.createdBy',
+                    'createdBy.avatar', 'reactions.createdBy.avatar', 'replies.createdBy.avatar',
+                    'replies.reactions.createdBy.avatar',
                     // 'taggedUsers',
                 ])->latest()
                 ->for($request->validated())

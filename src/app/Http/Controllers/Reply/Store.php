@@ -13,7 +13,7 @@ class Store extends Controller
     {
         return new Resource(
             Reply::create($request->validated())
-                ->load(['createdBy', 'reactions'])
+                ->load(['createdBy.avatar', 'reactions'])
         );
     }
 }

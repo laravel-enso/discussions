@@ -14,8 +14,8 @@ class Store extends Controller
         return new Resource(
             Discussion::create($request->validated())
                 ->load([
-                    'createdBy', 'reactions.createdBy', 'replies.createdBy',
-                    'replies.reactions.createdBy',
+                    'createdBy.avatar', 'reactions.createdBy.avatar', 'replies.createdBy.avatar',
+                    'replies.reactions.createdBy.avatar',
                 ])
         );
     }
