@@ -23,13 +23,13 @@ class Discussion extends JsonResource
         ];
     }
 
-    private function taggedUserList()
-    {
-        return $this->taggedUsers->map(function ($user) {
-            return [
-                'id' => $user->id,
-                'fullName' => $user->fullName,
-            ];
-        });
-    }
+    // private function taggedUserList()
+    // {
+    //     return $this->taggedUsers->map(function ($user) {
+    //         return [
+    //             'id' => $user->id,
+    //             'fullName' => $user->fullName,
+    //         ];
+    //     });
+    // }
 }

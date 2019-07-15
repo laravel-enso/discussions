@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 use LaravelEnso\Helpers\app\Traits\UpdatesOnTouch;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
+use LaravelEnso\Helpers\app\Traits\AvoidsDeletionConflicts;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class Discussion extends Model
 {
-    use CreatedBy, Reactable, UpdatesOnTouch;
+    use CreatedBy, Reactable, UpdatesOnTouch, AvoidsDeletionConflicts;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 
@@ -49,5 +51,16 @@ class Discussion extends Model
     public function getLoggableMorph()
     {
         return config('enso.discussions.loggableMorph');
+    }
+
+    public function delete()
+    {
+        if ($this->replies()->first() !== null) {
+            throw new ConflictHttpException(
+                __('The discussion has replies and cannot be deleted')
+            );
+        }
+
+        return parent::delete();
     }
 }
