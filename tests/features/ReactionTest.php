@@ -1,6 +1,7 @@
 <?php
 
 use Tests\TestCase;
+use Illuminate\Support\Facades\Auth;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Discussions\app\Enums\Reactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -37,7 +38,7 @@ class ReactionTest extends TestCase
             'reactableId' => factory(Discussion::class)->create()->id,
             'reactableType' => self::ReactableType,
             'type' => Reactions::Clap,
-            'userId' => auth()->user()->id,
+            'userId' => Auth::user()->id,
         ];
     }
 }

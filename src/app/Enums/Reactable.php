@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\Discussions\app\Enums;
 
-use LaravelEnso\Helpers\app\Classes\Enum;
+use LaravelEnso\Enums\app\Services\Enum;
 use LaravelEnso\Discussions\app\Models\Reply;
 use LaravelEnso\Discussions\app\Models\Discussion;
 

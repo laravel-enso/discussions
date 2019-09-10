@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Discussions\app\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
@@ -30,7 +31,7 @@ class Reply extends Model
 
     public function isEditable()
     {
-        return auth()->check()
-            && auth()->user()->can('handle', $this);
+        return Auth::check()
+            && Auth::user()->can('handle', $this);
     }
 }
