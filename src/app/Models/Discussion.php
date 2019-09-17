@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 use LaravelEnso\Helpers\app\Traits\UpdatesOnTouch;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
 use LaravelEnso\Helpers\app\Traits\AvoidsDeletionConflicts;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
@@ -47,10 +46,7 @@ class Discussion extends Model
     public function scopeFor($query, $params)
     {
         $query->whereDiscussableId($params['discussable_id'])
-            ->whereDiscussableType(
-                Relation::getMorphedModel($params['discussable_type'])
-                    ?? $params['discussable_type']
-            );
+            ->whereDiscussableType($params['discussable_type']);
     }
 
     public function getLoggableMorph()
