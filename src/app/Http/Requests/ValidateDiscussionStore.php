@@ -3,7 +3,6 @@
 namespace LaravelEnso\Discussions\app\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Discussions\app\Exceptions\DiscussionException;
 
 class ValidateDiscussionStore extends FormRequest
 {
@@ -22,14 +21,5 @@ class ValidateDiscussionStore extends FormRequest
             'title' => 'required',
             'body' => 'required',
         ];
-    }
-
-    public function checkParams()
-    {
-        if (! class_exists($this->discussable_type)) {
-            throw new DiscussionException(
-                'The "discussable_type" property must be a valid model class'
-            );
-        }
     }
 }
