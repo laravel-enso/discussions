@@ -8,8 +8,6 @@ class ValidateDiscussionStore extends FormRequest
 {
     public function authorize()
     {
-        $this->checkParams();
-
         return true;
     }
 
