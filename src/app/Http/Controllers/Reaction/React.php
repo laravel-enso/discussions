@@ -5,8 +5,8 @@ namespace LaravelEnso\Discussions\app\Http\Controllers\Reaction;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Enums\Reactable;
-use LaravelEnso\Discussions\app\Models\Reaction;
 use LaravelEnso\Discussions\app\Http\Resources\Reaction as Resource;
+use LaravelEnso\Discussions\app\Models\Reaction;
 
 class React extends Controller
 {

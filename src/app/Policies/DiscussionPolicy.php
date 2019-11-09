@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\Discussions\app\Policies;
 
-use LaravelEnso\Core\app\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Discussions\app\Models\Discussion;
 
 class DiscussionPolicy

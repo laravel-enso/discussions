@@ -2,10 +2,10 @@
 
 namespace LaravelEnso\Discussions\app\Models;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use Illuminate\Support\Facades\Auth;
 use LaravelEnso\Discussions\app\Models\Traits\Reactable;
+use LaravelEnso\TrackWho\app\Traits\CreatedBy;
 
 class Reply extends Model
 {

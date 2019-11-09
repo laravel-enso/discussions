@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Discussions\app\Http\Controllers\Discussion;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\app\Models\Discussion;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Destroy extends Controller
 {

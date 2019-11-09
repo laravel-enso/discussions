@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Discussions\app\Enums;
 
-use LaravelEnso\Enums\app\Services\Enum;
-use LaravelEnso\Discussions\app\Models\Reply;
 use LaravelEnso\Discussions\app\Models\Discussion;
+use LaravelEnso\Discussions\app\Models\Reply;
+use LaravelEnso\Enums\app\Services\Enum;
 
 class Reactable extends Enum
 {

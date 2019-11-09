@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\Discussions\app\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Discussions\app\Models\Reply;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReplyPolicy
 {
