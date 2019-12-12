@@ -17,8 +17,8 @@ class Index extends Controller
                 'replies.reactions.createdBy.avatar',
                 // 'taggedUsers',
             ])->latest()
-                ->for($request->validated())
-                ->get()
+            ->for($request->validated())
+            ->get()
         );
     }
 }
