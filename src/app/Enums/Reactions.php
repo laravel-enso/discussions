@@ -6,5 +6,5 @@ use LaravelEnso\Enums\app\Services\Enum;
 
 class Reactions extends Enum
 {
-    const Clap = 1;
+    public const Clap = 1;
 }
