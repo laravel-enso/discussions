@@ -1,8 +1,10 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Requests;
+namespace LaravelEnso\Discussions\App\Http\Requests;
 
-class ValidateDiscussionFetch extends ValidateDiscussionStore
+use Illuminate\Foundation\Http\FormRequest;
+
+class ValidateDiscussionFetch extends FormRequest
 {
     public function rules()
     {

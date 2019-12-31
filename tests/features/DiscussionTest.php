@@ -2,11 +2,11 @@
 
 use Faker\Factory;
 use Tests\TestCase;
-use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\Core\App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\Discussions\app\Models\Discussion;
-use LaravelEnso\Discussions\app\Traits\Discussable;
+use LaravelEnso\Discussions\App\Models\Discussion;
+use LaravelEnso\Discussions\App\Traits\Discussable;
 
 class DiscussionTest extends TestCase
 {
@@ -20,7 +20,7 @@ class DiscussionTest extends TestCase
 
         $this->faker = Factory::create();
 
-        //$this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         $this->seed()
             ->actingAs(User::first());

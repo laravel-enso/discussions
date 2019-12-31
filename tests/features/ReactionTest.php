@@ -2,10 +2,10 @@
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Auth;
-use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\Discussions\app\Enums\Reactions;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Discussions\App\Enums\Reactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\Discussions\app\Models\Discussion;
+use LaravelEnso\Discussions\App\Models\Discussion;
 
 class ReactionTest extends TestCase
 {

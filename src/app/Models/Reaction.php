@@ -1,9 +1,10 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Models;
+namespace LaravelEnso\Discussions\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\TrackWho\App\Traits\CreatedBy;
 
 class Reaction extends Model
 {
@@ -18,11 +19,7 @@ class Reaction extends Model
 
     public function user()
     {
-        return $this->belongsTo(
-            config('auth.providers.users.model'),
-            'created_by',
-            'id'
-        );
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public static function toggle($reactable, $attributes)

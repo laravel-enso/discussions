@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Traits;
+namespace LaravelEnso\Discussions\App\Traits;
 
-use LaravelEnso\Discussions\app\Models\Discussion;
+use LaravelEnso\Discussions\App\Models\Discussion;
 
 trait Discussions
 {

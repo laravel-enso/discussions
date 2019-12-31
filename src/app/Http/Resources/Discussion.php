@@ -1,9 +1,10 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Resources;
+namespace LaravelEnso\Discussions\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\TrackWho\app\Http\Resources\TrackWho;
+use Illuminate\Support\Facades\Auth;
+use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
 
 class Discussion extends JsonResource
 {
@@ -15,7 +16,7 @@ class Discussion extends JsonResource
             'body' => $this->body,
             'owner' => new TrackWho($this->whenLoaded('createdBy')),
             // 'taggedUsers' => $this->whenLoaded('taggedUsers', $this->taggedUserList()),
-            'isEditable' => $this->isEditable(),
+            'isEditable' => Auth::user()->can('handle', $this->resource),
             'reactions' => Reaction::collection($this->whenLoaded('reactions')),
             'replies' => Reply::collection($this->whenLoaded('replies')),
             'createdAt' => $this->created_at->toDatetimeString(),
@@ -23,13 +24,11 @@ class Discussion extends JsonResource
         ];
     }
 
-    // private function taggedUserList()
-    // {
-    //     return $this->taggedUsers->map(function ($user) {
-    //         return [
-    //             'id' => $user->id,
-    //             'fullName' => $user->fullName,
-    //         ];
-    //     });
-    // }
+    private function taggedUserList()
+    {
+        return $this->taggedUsers->map(fn ($user) => [
+            'id' => $user->id,
+            'fullName' => $user->fullName,
+        ]);
+    }
 }

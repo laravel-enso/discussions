@@ -1,19 +1,18 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Controllers\Reply;
+namespace LaravelEnso\Discussions\App\Http\Controllers\Reply;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\Discussions\app\Http\Requests\ValidateReplyStore;
-use LaravelEnso\Discussions\app\Http\Resources\Reply as Resource;
-use LaravelEnso\Discussions\app\Models\Reply;
+use LaravelEnso\Discussions\App\Http\Requests\ValidateReplyRequest;
+use LaravelEnso\Discussions\App\Http\Resources\Reply as Resource;
+use LaravelEnso\Discussions\App\Models\Reply;
 
 class Store extends Controller
 {
-    public function __invoke(ValidateReplyStore $request)
+    public function __invoke(ValidateReplyRequest $request, Reply $reply)
     {
-        return new Resource(
-            Reply::create($request->validated())
-                ->load(['createdBy.avatar', 'reactions'])
-        );
+        $reply->fill($request->validated())->save();
+
+        return new Resource($reply->load('createdBy.avatar', 'reactions'));
     }
 }

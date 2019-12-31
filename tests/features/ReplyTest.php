@@ -1,10 +1,10 @@
 <?php
 
 use Tests\TestCase;
-use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\Discussions\app\Models\Reply;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Discussions\App\Models\Reply;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use LaravelEnso\Discussions\app\Models\Discussion;
+use LaravelEnso\Discussions\App\Models\Discussion;
 
 class ReplyTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ReplyTest extends TestCase
     {
         parent::setUp();
 
-        //$this->withoutExceptionHandling();
+        // $this->withoutExceptionHandling();
 
         $this->seed()
             ->actingAs(User::first());

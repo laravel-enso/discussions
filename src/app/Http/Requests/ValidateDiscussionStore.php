@@ -1,10 +1,8 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Requests;
+namespace LaravelEnso\Discussions\App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class ValidateDiscussionStore extends FormRequest
+class ValidateDiscussionStore extends ValidateDiscussionFetch
 {
     public function authorize()
     {
@@ -14,10 +12,8 @@ class ValidateDiscussionStore extends FormRequest
     public function rules()
     {
         return [
-            'discussable_id' => 'required',
-            'discussable_type' => 'required',
             'title' => 'required',
             'body' => 'required',
-        ];
+        ] + parent::rules();
     }
 }

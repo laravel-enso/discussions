@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Enums;
+namespace LaravelEnso\Discussions\App\Enums;
 
-use LaravelEnso\Discussions\app\Models\Discussion;
-use LaravelEnso\Discussions\app\Models\Reply;
-use LaravelEnso\Enums\app\Services\Enum;
+use LaravelEnso\Discussions\App\Models\Discussion;
+use LaravelEnso\Discussions\App\Models\Reply;
+use LaravelEnso\Enums\App\Services\Enum;
 
 class Reactable extends Enum
 {

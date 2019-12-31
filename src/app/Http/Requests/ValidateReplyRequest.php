@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Requests;
+namespace LaravelEnso\Discussions\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidateReplyStore extends FormRequest
+class ValidateReplyRequest extends FormRequest
 {
     public function authorize()
     {
@@ -21,6 +21,8 @@ class ValidateReplyStore extends FormRequest
 
     protected function discussionId()
     {
-        return 'required|exists:discussions,id';
+        return $this->route('reply')
+            ? 'nullable'
+            : 'required|exists:discussions,id';
     }
 }

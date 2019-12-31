@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Http\Resources;
+namespace LaravelEnso\Discussions\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\TrackWho\app\Http\Resources\TrackWho;
+use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
 
 class Reaction extends JsonResource
 {

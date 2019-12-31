@@ -1,28 +1,17 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Traits;
+namespace LaravelEnso\Discussions\App\Traits;
 
-use LaravelEnso\Discussions\app\Models\Discussion;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
+use LaravelEnso\Discussions\App\Exceptions\DiscussionConflict;
+use LaravelEnso\Discussions\App\Models\Discussion;
 
 trait Discussable
 {
     public static function bootDiscussable()
     {
-        self::deleting(function ($model) {
-            if (config('enso.discussions.onDelete') === 'restrict'
-                && $model->discussions()->first() !== null) {
-                throw new ConflictHttpException(
-                    __('The entity has discussions and cannot be deleted')
-                );
-            }
-        });
+        self::deleting(fn ($model) => $model->attemptDiscussableDeletion());
 
-        self::deleted(function ($model) {
-            if (config('enso.discussions.onDelete') === 'cascade') {
-                $model->discussions()->delete();
-            }
-        });
+        self::deleted(fn ($model) => $model->cascadeDiscussionDeletion());
     }
 
     public function discussion()
@@ -33,5 +22,20 @@ trait Discussable
     public function discussions()
     {
         return $this->morphMany(Discussion::class, 'discussable');
+    }
+
+    private function attemptDiscussableDeletion()
+    {
+        if (config('enso.discussions.onDelete') === 'restrict'
+            && $this->discussions()->exists()) {
+            throw DiscussionConflict::delete();
+        }
+    }
+
+    private function cascadeDiscussionDeletion()
+    {
+        if (config('enso.discussions.onDelete') === 'cascade') {
+            $this->discussions()->delete();
+        }
     }
 }

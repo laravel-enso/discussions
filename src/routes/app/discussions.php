@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::namespace('Discussion')
     ->group(function () {
         Route::get('', 'Index')->name('index');

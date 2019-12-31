@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::namespace('Reply')
     ->group(function () {
         Route::post('storeReply', 'Store')->name('storeReply');

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Models;
+namespace LaravelEnso\Discussions\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use LaravelEnso\Discussions\app\Models\Traits\Reactable;
-use LaravelEnso\TrackWho\app\Traits\CreatedBy;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Discussions\App\Models\Traits\Reactable;
+use LaravelEnso\TrackWho\App\Traits\CreatedBy;
 
 class Reply extends Model
 {
@@ -22,16 +22,6 @@ class Reply extends Model
 
     public function user()
     {
-        return $this->belongsTo(
-            config('auth.providers.users.model'),
-            'created_by',
-            'id'
-        );
-    }
-
-    public function isEditable()
-    {
-        return Auth::check()
-            && Auth::user()->can('handle', $this);
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

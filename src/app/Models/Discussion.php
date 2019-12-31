@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelEnso\Discussions\app\Models;
+namespace LaravelEnso\Discussions\App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
-use LaravelEnso\Discussions\app\Models\Traits\Reactable;
-use LaravelEnso\Helpers\app\Traits\AvoidsDeletionConflicts;
-use LaravelEnso\Helpers\app\Traits\UpdatesOnTouch;
-use LaravelEnso\TrackWho\app\Traits\CreatedBy;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Discussions\App\Exceptions\DiscussionConflict;
+use LaravelEnso\Discussions\App\Models\Traits\Reactable;
+use LaravelEnso\Helpers\App\Traits\AvoidsDeletionConflicts;
+use LaravelEnso\Helpers\App\Traits\UpdatesOnTouch;
+use LaravelEnso\TrackWho\App\Traits\CreatedBy;
 
 class Discussion extends Model
 {
@@ -25,22 +25,12 @@ class Discussion extends Model
 
     public function user()
     {
-        return $this->belongsTo(
-            config('auth.providers.users.model'),
-            'created_by',
-            'id'
-        );
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public function replies()
     {
         return $this->hasMany(Reply::class);
-    }
-
-    public function isEditable()
-    {
-        return Auth::check()
-            && Auth::user()->can('handle', $this);
     }
 
     public function scopeFor($query, $params)
@@ -56,10 +46,8 @@ class Discussion extends Model
 
     public function delete()
     {
-        if ($this->replies()->first() !== null) {
-            throw new ConflictHttpException(
-                __('The discussion has replies and cannot be deleted')
-            );
+        if ($this->replies()->exists()) {
+            throw DiscussionConflict::hasReplies();
         }
 
         return parent::delete();
