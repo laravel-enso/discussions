@@ -8,7 +8,7 @@ use LaravelEnso\Enums\App\Services\Enum;
 
 class Reactable extends Enum
 {
-    protected static $data = [
+    protected static array $data = [
         'discussion' => Discussion::class,
         'reply' => Reply::class,
     ];
