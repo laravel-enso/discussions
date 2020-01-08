@@ -1,11 +1,14 @@
 <?php
 
-use Tests\TestCase;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Discussions\App\Enums\Reactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use LaravelEnso\Discussions\App\Models\Discussion;
+use LaravelEnso\Discussions\App\Traits\Discussable;
+use Tests\TestCase;
 
 class ReactionTest extends TestCase
 {
@@ -22,6 +25,8 @@ class ReactionTest extends TestCase
         $this->seed()
             ->actingAs(User::first());
 
+        $this->createTestTable();
+
         $this->postParams = $this->postParams();
     }
 
@@ -35,10 +40,34 @@ class ReactionTest extends TestCase
     private function postParams()
     {
         return [
-            'reactableId' => factory(Discussion::class)->create()->id,
+            'reactableId' => factory(Discussion::class)->create([
+                'discussable_id' => factory(Discussion::class)->create([
+                    'discussable_id' => DiscussionReactionTestModel::create(['name' => 'discussable'])->id,
+                    'discussable_type' => DiscussionReactionTestModel::class,
+                ])->id,
+                'discussable_type' => DiscussionReactionTestModel::class,
+            ])->id,
             'reactableType' => self::ReactableType,
             'type' => Reactions::Clap,
             'userId' => Auth::user()->id,
         ];
     }
+
+    private function createTestTable()
+    {
+        Schema::create('discussion_reaction_test_models', function ($table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        return $this;
+    }
+}
+
+class DiscussionReactionTestModel extends Model
+{
+    use Discussable;
+
+    protected $fillable = ['name'];
 }

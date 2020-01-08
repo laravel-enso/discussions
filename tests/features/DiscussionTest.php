@@ -1,12 +1,13 @@
 <?php
 
 use Faker\Factory;
-use Tests\TestCase;
-use LaravelEnso\Core\App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
+use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Discussions\App\Models\Discussion;
 use LaravelEnso\Discussions\App\Traits\Discussable;
+use Tests\TestCase;
 
 class DiscussionTest extends TestCase
 {
@@ -28,6 +29,7 @@ class DiscussionTest extends TestCase
         $this->createTestTable();
 
         $this->testModel = $this->postParams();
+
         $this->testModel->save();
     }
 
@@ -88,17 +90,6 @@ class DiscussionTest extends TestCase
         )->assertStatus(403);
     }
 
-    private function createTestTable()
-    {
-        Schema::create('discussion_test_models', function ($table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
-
-        return $this;
-    }
-
     private function postParams()
     {
         return factory(Discussion::class)
@@ -114,8 +105,18 @@ class DiscussionTest extends TestCase
             'is_active' => true,
         ]);
     }
-}
 
+    private function createTestTable()
+    {
+        Schema::create('discussion_test_models', function ($table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        return $this;
+    }
+}
 class DiscussionTestModel extends Model
 {
     use Discussable;

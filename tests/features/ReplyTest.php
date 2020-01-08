@@ -1,10 +1,13 @@
 <?php
 
-use Tests\TestCase;
-use LaravelEnso\Core\App\Models\User;
-use LaravelEnso\Discussions\App\Models\Reply;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
+use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Discussions\App\Models\Discussion;
+use LaravelEnso\Discussions\App\Models\Reply;
+use LaravelEnso\Discussions\App\Traits\Discussable;
+use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
@@ -21,10 +24,11 @@ class ReplyTest extends TestCase
         $this->seed()
             ->actingAs(User::first());
 
+        $this->createTestTable();
         $this->testModel = $this->model();
 
         $this->postParams = factory(Reply::class)->make([
-            'discussion_id' => factory(Discussion::class)->create()->id
+            'discussion_id' => factory(Discussion::class)->create($this->postParams())->id
         ]);
     }
 
@@ -76,12 +80,42 @@ class ReplyTest extends TestCase
     private function model()
     {
         return factory(Reply::class)->create([
-            'discussion_id' => factory(Discussion::class)->create()->id
+            'discussion_id' => factory(Discussion::class)
+                ->create($this->postParams())->id
         ]);
+    }
+
+    private function postParams()
+    {
+     return [
+         'discussable_id' => factory(Discussion::class)->create([
+            'discussable_id' => DiscussionReplyTestModel::create(['name' => 'discussable'])->id,
+            'discussable_type' => DiscussionReplyTestModel::class,
+        ])->id,
+        'discussable_type' => DiscussionReplyTestModel::class,
+         ];
     }
 
     private function anotherUser()
     {
         return factory(User::class)->create(['is_active' => true]);
     }
+
+    private function createTestTable()
+    {
+        Schema::create('discussion_reply_test_models', function ($table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        return $this;
+    }
+}
+
+class DiscussionReplyTestModel extends Model
+{
+    use Discussable;
+
+    protected $fillable = ['name'];
 }
