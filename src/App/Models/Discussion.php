@@ -7,12 +7,13 @@ use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Discussions\App\Exceptions\DiscussionConflict;
 use LaravelEnso\Discussions\App\Models\Traits\Reactable;
 use LaravelEnso\Helpers\App\Traits\AvoidsDeletionConflicts;
+use LaravelEnso\Helpers\App\Traits\CascadesMorphMap;
 use LaravelEnso\Helpers\App\Traits\UpdatesOnTouch;
 use LaravelEnso\TrackWho\App\Traits\CreatedBy;
 
 class Discussion extends Model
 {
-    use CreatedBy, Reactable, UpdatesOnTouch, AvoidsDeletionConflicts;
+    use CascadesMorphMap, CreatedBy, Reactable, UpdatesOnTouch, AvoidsDeletionConflicts;
 
     protected $fillable = ['discussable_id', 'discussable_type', 'title', 'body'];
 

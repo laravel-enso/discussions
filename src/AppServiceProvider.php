@@ -2,13 +2,16 @@
 
 namespace LaravelEnso\Discussions;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Discussions\App\Models\Discussion;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         $this->load()
+            ->mapMorphs()
             ->publish();
     }
 
@@ -19,6 +22,15 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
 
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        return $this;
+    }
+
+    private function mapMorphs()
+    {
+        Relation::morphMap([
+            Discussion::morphMapKey() => Discussion::class,
+        ]);
 
         return $this;
     }
