@@ -3,10 +3,9 @@
 namespace LaravelEnso\Discussions\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use LaravelEnso\Helpers\App\Contracts\TransformsMorphMap;
 use LaravelEnso\Helpers\App\Traits\TransformMorphMap;
 
-class ValidateDiscussionFetch extends FormRequest implements TransformsMorphMap
+class ValidateDiscussionFetch extends FormRequest
 {
     use TransformMorphMap;
 
