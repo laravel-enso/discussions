@@ -3,7 +3,7 @@
 namespace LaravelEnso\Discussions\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
+use LaravelEnso\Core\App\Http\Resources\User;
 
 class Reaction extends JsonResource
 {
@@ -12,7 +12,7 @@ class Reaction extends JsonResource
         return [
             'id' => $this->id,
             'type' => $this->type,
-            'owner' => new TrackWho($this->whenLoaded('createdBy')),
+            'owner' => new User($this->whenLoaded('createdBy')),
         ];
     }
 }

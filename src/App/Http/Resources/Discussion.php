@@ -4,7 +4,7 @@ namespace LaravelEnso\Discussions\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use LaravelEnso\TrackWho\App\Http\Resources\TrackWho;
+use LaravelEnso\Core\App\Http\Resources\User;
 
 class Discussion extends JsonResource
 {
@@ -14,7 +14,7 @@ class Discussion extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'body' => $this->body,
-            'owner' => new TrackWho($this->whenLoaded('createdBy')),
+            'owner' => new User($this->whenLoaded('createdBy')),
             // 'taggedUsers' => $this->whenLoaded('taggedUsers', $this->taggedUserList()),
             'isEditable' => Auth::user()->can('handle', $this->resource),
             'reactions' => Reaction::collection($this->whenLoaded('reactions')),
