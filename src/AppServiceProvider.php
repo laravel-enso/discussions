@@ -8,7 +8,7 @@ use LaravelEnso\Discussions\DynamicsRelations\Discussions;
 use LaravelEnso\Discussions\DynamicsRelations\Replies;
 use LaravelEnso\Discussions\Models\Discussion;
 use LaravelEnso\DynamicMethods\Services\Methods;
-use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Core\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {

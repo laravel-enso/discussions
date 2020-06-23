@@ -4,7 +4,7 @@ namespace LaravelEnso\Discussions\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use LaravelEnso\TrackWho\Http\Resources\TrackWho;
+use LaravelEnso\Core\Http\Resources\User;
 
 class Reply extends JsonResource
 {
@@ -13,7 +13,7 @@ class Reply extends JsonResource
         return [
             'id' => $this->id,
             'body' => $this->body,
-            'owner' => new TrackWho($this->whenLoaded('createdBy')),
+            'owner' => new User($this->whenLoaded('createdBy')),
             'reactions' => Reaction::collection($this->whenLoaded('reactions')),
             'isEditable' => Auth::user()->can('handle', $this->resource),
             'createdAt' => $this->created_at->toDatetimeString(),
