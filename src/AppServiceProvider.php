@@ -2,13 +2,12 @@
 
 namespace LaravelEnso\Discussions;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Core\App\Models\User;
 use LaravelEnso\Discussions\DynamicsRelations\Discussions;
 use LaravelEnso\Discussions\DynamicsRelations\Replies;
 use LaravelEnso\Discussions\Models\Discussion;
 use LaravelEnso\DynamicMethods\Services\Methods;
-use LaravelEnso\Core\App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
