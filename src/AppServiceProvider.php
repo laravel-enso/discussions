@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\Discussions;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\Discussions\DynamicsRelations\Discussions;
 use LaravelEnso\Discussions\DynamicsRelations\Replies;
