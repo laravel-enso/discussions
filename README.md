@@ -1,6 +1,6 @@
 # Discussions
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a6aa6c234c4945379d7c6c143733aa43)](https://www.codacy.com/app/laravel-enso/discussions?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/discussions&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/25fa2e7c90e246dfa9137c612189a34f)](https://www.codacy.com/gh/laravel-enso/discussions?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/discussions&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://github.styleci.io/repos/148976842/shield?branch=master)](https://github.styleci.io/repos/148976842)
 [![License](https://poser.pugx.org/laravel-enso/discussions/license)](https://packagist.org/packages/laravel-enso/discussions)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/discussions/downloads)](https://packagist.org/packages/laravel-enso/discussions)
