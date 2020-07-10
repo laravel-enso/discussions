@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\Discussions\DynamicsRelations;
+namespace LaravelEnso\Discussions\DynamicRelations;
 
 use Closure;
 use LaravelEnso\Discussions\Models\Discussion;
