@@ -10,9 +10,9 @@ class CreateStructureForDiscussions extends Migration
         ['name' => 'core.discussions.show', 'description' => 'Show discussion', 'is_default' => true],
         ['name' => 'core.discussions.update', 'description' => 'Update discussion', 'is_default' => true],
         ['name' => 'core.discussions.destroy', 'description' => 'Delete discussion', 'is_default' => true],
-        ['name' => 'core.discussions.storeReply', 'description' => 'Store a new reply', 'is_default' => true],
-        ['name' => 'core.discussions.updateReply', 'description' => 'Update reply', 'is_default' => true],
-        ['name' => 'core.discussions.destroyReply', 'description' => 'Delete reply', 'is_default' => true],
-        ['name' => 'core.discussions.react', 'description' => 'React on reactable', 'is_default' => true],
+        ['name' => 'core.discussions.replies.store', 'description' => 'Store a new reply', 'is_default' => true],
+        ['name' => 'core.discussions.replies.update', 'description' => 'Update reply', 'is_default' => true],
+        ['name' => 'core.discussions.replies.destroy', 'description' => 'Delete reply', 'is_default' => true],
+        ['name' => 'core.discussions.reactions.toggle', 'description' => 'React on reactable', 'is_default' => true],
     ];
 }

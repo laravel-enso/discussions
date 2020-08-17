@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::namespace('Reply')
+    ->prefix('replies')
+    ->as('replies.')
     ->group(function () {
-        Route::post('storeReply', 'Store')->name('storeReply');
-        Route::patch('updateReply/{reply}', 'Update')->name('updateReply');
-        Route::delete('destroyReply/{reply}', 'Destroy')->name('destroyReply');
+        Route::post('store', 'Store')->name('store');
+        Route::patch('update/{reply}', 'Update')->name('update');
+        Route::delete('destroy/{reply}', 'Destroy')->name('destroy');
     });
