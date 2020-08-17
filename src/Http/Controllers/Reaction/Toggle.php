@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use LaravelEnso\Discussions\Http\Resources\Reaction as Resource;
 use LaravelEnso\Discussions\Models\Reaction;
 
-class React extends Controller
+class Toggle extends Controller
 {
     public function __invoke(Request $request)
     {
