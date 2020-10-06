@@ -17,7 +17,7 @@
     "require": {
         "laravel-enso/core": "^6.0",
         "laravel-enso/enums": "^2.0",
-        "laravel-enso/helpers": "^3.0",
+        "laravel-enso/helpers": "^2.0",
         "laravel-enso/migrator": "^2.0",
         "laravel-enso/track-who": "^2.0"
     },
