@@ -92,7 +92,7 @@ class DiscussionTest extends TestCase
 
     private function postParams()
     {
-        return factory(Discussion::class)
+        return Discussion::factory()
             ->make([
                 'discussable_id' => DiscussionTestModel::create(['name' => 'discussable'])->id,
                 'discussable_type' => DiscussionTestModel::class,
@@ -101,7 +101,7 @@ class DiscussionTest extends TestCase
 
     private function anotherUser()
     {
-        return factory(User::class)->create([
+        return User::factory()->create([
             'is_active' => true,
         ]);
     }
