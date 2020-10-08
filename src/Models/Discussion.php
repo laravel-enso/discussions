@@ -8,12 +8,18 @@ use LaravelEnso\Discussions\Exceptions\DiscussionConflict;
 use LaravelEnso\Discussions\Models\Traits\Reactable;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Helpers\Traits\CascadesMorphMap;
+use LaravelEnso\Helpers\Traits\HasFactory;
 use LaravelEnso\Helpers\Traits\UpdatesOnTouch;
 use LaravelEnso\TrackWho\Traits\CreatedBy;
 
 class Discussion extends Model
 {
-    use CascadesMorphMap, CreatedBy, Reactable, UpdatesOnTouch, AvoidsDeletionConflicts;
+    use CascadesMorphMap,
+        CreatedBy,
+        HasFactory,
+        Reactable,
+        UpdatesOnTouch,
+        AvoidsDeletionConflicts;
 
     protected $guarded = ['id'];
 

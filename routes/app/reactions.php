@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Discussions\Http\Controllers\Reaction\React;
 
-Route::namespace('Reaction')
-    ->group(function () {
-        Route::post('react', 'React')->name('react');
-    });
+Route::post('react', React::class)->name('react');

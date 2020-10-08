@@ -5,11 +5,12 @@ namespace LaravelEnso\Discussions\Models;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Models\Traits\Reactable;
+use LaravelEnso\Helpers\Traits\HasFactory;
 use LaravelEnso\TrackWho\Traits\CreatedBy;
 
 class Reply extends Model
 {
-    use Reactable, CreatedBy;
+    use Reactable, CreatedBy, HasFactory;
 
     protected $table = 'discussion_replies';
 

@@ -1,11 +1,21 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace LaravelEnso\Discussions\Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 use LaravelEnso\Discussions\Models\Discussion;
 
-$factory->define(Discussion::class, fn (Faker $faker) => [
-    'discussable_id' => $faker->randomKey,
-    'discussable_type' => $faker->word,
-    'body' => $faker->sentence,
-    'title' => $faker->sentence,
-]);
+class DiscussionFactory extends Factory
+{
+    protected $model = Discussion::class;
+
+    public function definition()
+    {
+        return [
+            'discussable_id' => $this->faker->randomKey,
+            'discussable_type' => $this->faker->word,
+            'body' => $this->faker->sentence,
+            'title' => $this->faker->sentence,
+        ];
+    }
+}

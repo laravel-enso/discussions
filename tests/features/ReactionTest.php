@@ -40,8 +40,8 @@ class ReactionTest extends TestCase
     private function postParams()
     {
         return [
-            'reactableId' => factory(Discussion::class)->create([
-                'discussable_id' => factory(Discussion::class)->create([
+            'reactableId' => Discussion::factory()->create([
+                'discussable_id' => Discussion::factory()->create([
                     'discussable_id' => DiscussionReactionTestModel::create(['name' => 'discussable'])->id,
                     'discussable_type' => DiscussionReactionTestModel::class,
                 ])->id,
