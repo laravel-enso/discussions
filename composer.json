@@ -24,7 +24,7 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\Discussions\\": "src/",
-            "LaravelEnso\\Core\\Database\\Factories\\": "database/factories/"
+            "LaravelEnso\\Discussions\\Database\\Factories\\": "database/factories/"
         }
     },
     "extra": {
