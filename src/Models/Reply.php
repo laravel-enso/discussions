@@ -2,10 +2,10 @@
 
 namespace LaravelEnso\Discussions\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Models\Traits\Reactable;
-use LaravelEnso\Helpers\Traits\HasFactory;
 use LaravelEnso\TrackWho\Traits\CreatedBy;
 
 class Reply extends Model
