@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Discussions\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Exceptions\DiscussionConflict;
@@ -13,7 +14,12 @@ use LaravelEnso\TrackWho\Traits\CreatedBy;
 
 class Discussion extends Model
 {
-    use CascadesMorphMap, CreatedBy, Reactable, UpdatesOnTouch, AvoidsDeletionConflicts;
+    use CascadesMorphMap,
+        CreatedBy,
+        HasFactory,
+        Reactable,
+        UpdatesOnTouch,
+        AvoidsDeletionConflicts;
 
     protected $guarded = ['id'];
 

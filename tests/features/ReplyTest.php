@@ -27,8 +27,8 @@ class ReplyTest extends TestCase
         $this->createTestTable();
         $this->testModel = $this->model();
 
-        $this->postParams = factory(Reply::class)->make([
-            'discussion_id' => factory(Discussion::class)->create($this->postParams())->id
+        $this->postParams = Reply::factory()->make([
+            'discussion_id' => Discussion::factory()->create($this->postParams())->id
         ]);
     }
 
@@ -79,8 +79,8 @@ class ReplyTest extends TestCase
 
     private function model()
     {
-        return factory(Reply::class)->create([
-            'discussion_id' => factory(Discussion::class)
+        return Reply::factory()->create([
+            'discussion_id' => Discussion::factory()
                 ->create($this->postParams())->id
         ]);
     }
@@ -88,7 +88,7 @@ class ReplyTest extends TestCase
     private function postParams()
     {
      return [
-         'discussable_id' => factory(Discussion::class)->create([
+         'discussable_id' => Discussion::factory()->create([
             'discussable_id' => DiscussionReplyTestModel::create(['name' => 'discussable'])->id,
             'discussable_type' => DiscussionReplyTestModel::class,
         ])->id,
@@ -98,7 +98,7 @@ class ReplyTest extends TestCase
 
     private function anotherUser()
     {
-        return factory(User::class)->create(['is_active' => true]);
+        return User::factory()->create(['is_active' => true]);
     }
 
     private function createTestTable()
