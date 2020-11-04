@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Discussions\Http\Controllers\Reply\Store;
+use LaravelEnso\Discussions\Http\Controllers\Reply\Update;
+use LaravelEnso\Discussions\Http\Controllers\Reply\Destroy;
 
-Route::namespace('Reply')
-    ->prefix('replies')
+Route::prefix('replies')
     ->as('replies.')
     ->group(function () {
-        Route::post('store', 'Store')->name('store');
-        Route::patch('update/{reply}', 'Update')->name('update');
-        Route::delete('destroy/{reply}', 'Destroy')->name('destroy');
+        Route::post('store', Store::class)->name('store');
+        Route::patch('update/{reply}', Update::class)->name('update');
+        Route::delete('destroy/{reply}', Destroy::class)->name('destroy');
     });
