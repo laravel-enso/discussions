@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Discussions\Http\Controllers\Discussion\Destroy;
 use LaravelEnso\Discussions\Http\Controllers\Discussion\Index;
 use LaravelEnso\Discussions\Http\Controllers\Discussion\Store;
 use LaravelEnso\Discussions\Http\Controllers\Discussion\Update;
-use LaravelEnso\Discussions\Http\Controllers\Discussion\Destroy;
 
 Route::get('', Index::class)->name('index');
 Route::post('', Store::class)->name('store');

@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use LaravelEnso\Discussions\Http\Controllers\Reply\Destroy;
 use LaravelEnso\Discussions\Http\Controllers\Reply\Store;
 use LaravelEnso\Discussions\Http\Controllers\Reply\Update;
-use LaravelEnso\Discussions\Http\Controllers\Reply\Destroy;
 
 Route::prefix('replies')
     ->as('replies.')
