@@ -35,7 +35,7 @@ class ReplyTest extends TestCase
     /** @test */
     public function can_store_reply_to_discussion()
     {
-        $this->post(route('core.discussions.storeReply'), $this->postParams->toArray())
+        $this->post(route('core.discussions.replies.store'), $this->postParams->toArray())
             ->assertStatus(201);
     }
 
@@ -45,7 +45,7 @@ class ReplyTest extends TestCase
         $this->testModel->body = 'edited';
 
         $this->patch(
-            route('core.discussions.updateReply', $this->testModel->id, false),
+            route('core.discussions.replies.update', $this->testModel->id, false),
             $this->testModel->toArray()
         )->assertStatus(200);
 
@@ -55,7 +55,7 @@ class ReplyTest extends TestCase
     /** @test */
     public function can_delete_reply_to_discussion()
     {
-        $this->delete(route('core.discussions.destroyReply', $this->testModel->id, false))
+        $this->delete(route('core.discussions.replies.destroy', $this->testModel->id, false))
             ->assertStatus(200);
     }
 
@@ -64,13 +64,13 @@ class ReplyTest extends TestCase
     {
         $this->actingAs($this->anotherUser());
 
-        $this->delete(route('core.discussions.destroyReply', $this->testModel->id, false))
+        $this->delete(route('core.discussions.replies.destroy', $this->testModel->id, false))
             ->assertStatus(403);
 
         $this->testModel->body = 'edited';
 
         $this->patch(
-            route('core.discussions.updateReply', $this->testModel->id, false),
+            route('core.discussions.replies.update', $this->testModel->id, false),
             $this->testModel->toArray()
         )->assertStatus(403);
 
