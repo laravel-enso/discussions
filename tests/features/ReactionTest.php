@@ -33,7 +33,7 @@ class ReactionTest extends TestCase
     /** @test */
     public function can_toggle_reaction()
     {
-        $this->post(route('core.discussions.react'), $this->postParams)
+        $this->post(route('core.discussions.reactions.toggle'), $this->postParams)
             ->assertStatus(200);
     }
 
