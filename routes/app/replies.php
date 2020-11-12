@@ -5,6 +5,10 @@ use LaravelEnso\Discussions\Http\Controllers\Reply\Destroy;
 use LaravelEnso\Discussions\Http\Controllers\Reply\Store;
 use LaravelEnso\Discussions\Http\Controllers\Reply\Update;
 
-Route::post('storeReply', Store::class)->name('storeReply');
-Route::patch('updateReply/{reply}', Update::class)->name('updateReply');
-Route::delete('destroyReply/{reply}', Destroy::class)->name('destroyReply');
+Route::prefix('replies')
+    ->as('replies.')
+    ->group(function () {
+        Route::post('store', Store::class)->name('store');
+        Route::patch('update/{reply}', Update::class)->name('update');
+        Route::delete('destroy/{reply}', Destroy::class)->name('destroy');
+    });

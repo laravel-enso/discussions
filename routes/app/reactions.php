@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use LaravelEnso\Discussions\Http\Controllers\Reaction\React;
+use LaravelEnso\Discussions\Http\Controllers\Reaction\Toggle;
 
-Route::post('react', React::class)->name('react');
+Route::prefix('reactions')
+    ->as('reactions.')
+    ->group(function () {
+        Route::post('toggle', Toggle::class)->name('toggle');
+    });
