@@ -6,7 +6,7 @@ use Closure;
 use LaravelEnso\Discussions\Models\Discussion;
 use LaravelEnso\DynamicMethods\Contracts\Method;
 
-class Discussionable implements Method
+class Discussable implements Method
 {
     public function name(): string
     {
