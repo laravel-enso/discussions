@@ -5,13 +5,13 @@ namespace LaravelEnso\Discussions\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
-use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Exceptions\DiscussionConflict;
 use LaravelEnso\Discussions\Models\Traits\Reactable;
 use LaravelEnso\Helpers\Traits\AvoidsDeletionConflicts;
 use LaravelEnso\Helpers\Traits\CascadesMorphMap;
 use LaravelEnso\Helpers\Traits\UpdatesOnTouch;
 use LaravelEnso\TrackWho\Traits\CreatedBy;
+use LaravelEnso\Users\Models\User;
 
 class Discussion extends Model
 {

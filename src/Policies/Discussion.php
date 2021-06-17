@@ -3,8 +3,8 @@
 namespace LaravelEnso\Discussions\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Models\Discussion as Model;
+use LaravelEnso\Users\Models\User;
 
 class Discussion
 {
