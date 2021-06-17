@@ -21,8 +21,6 @@ class DiscussionTest extends TestCase
 
         $this->faker = Factory::create();
 
-        // $this->withoutExceptionHandling();
-
         $this->seed()
             ->actingAs(User::first());
 

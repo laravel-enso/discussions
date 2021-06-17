@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\Discussions\Traits;
 
+use Illuminate\Support\Facades\Config;
 use LaravelEnso\Discussions\Exceptions\DiscussionConflict;
 use LaravelEnso\Discussions\Models\Discussion;
 
@@ -26,15 +27,17 @@ trait Discussable
 
     private function attemptDiscussableDeletion()
     {
-        if (config('enso.discussions.onDelete') === 'restrict'
-            && $this->discussions()->exists()) {
+        if (
+            Config::get('enso.discussions.onDelete') === 'restrict'
+            && $this->discussions()->exists()
+        ) {
             throw DiscussionConflict::delete();
         }
     }
 
     private function cascadeDiscussionDeletion()
     {
-        if (config('enso.discussions.onDelete') === 'cascade') {
+        if (Config::get('enso.discussions.onDelete') === 'cascade') {
             $this->discussions()->delete();
         }
     }

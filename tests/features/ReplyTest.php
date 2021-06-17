@@ -19,8 +19,6 @@ class ReplyTest extends TestCase
     {
         parent::setUp();
 
-        // $this->withoutExceptionHandling();
-
         $this->seed()
             ->actingAs(User::first());
 
@@ -28,7 +26,7 @@ class ReplyTest extends TestCase
         $this->testModel = $this->model();
 
         $this->postParams = Reply::factory()->make([
-            'discussion_id' => Discussion::factory()->create($this->postParams())->id
+            'discussion_id' => Discussion::factory()->create($this->postParams())->id,
         ]);
     }
 
@@ -81,13 +79,13 @@ class ReplyTest extends TestCase
     {
         return Reply::factory()->create([
             'discussion_id' => Discussion::factory()
-                ->create($this->postParams())->id
+                ->create($this->postParams())->id,
         ]);
     }
 
     private function postParams()
     {
-     return [
+        return [
          'discussable_id' => Discussion::factory()->create([
             'discussable_id' => DiscussionReplyTestModel::create(['name' => 'discussable'])->id,
             'discussable_type' => DiscussionReplyTestModel::class,

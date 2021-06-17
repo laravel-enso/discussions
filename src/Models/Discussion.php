@@ -4,6 +4,7 @@ namespace LaravelEnso\Discussions\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 use LaravelEnso\Core\Models\User;
 use LaravelEnso\Discussions\Exceptions\DiscussionConflict;
 use LaravelEnso\Discussions\Models\Traits\Reactable;
@@ -14,12 +15,8 @@ use LaravelEnso\TrackWho\Traits\CreatedBy;
 
 class Discussion extends Model
 {
-    use CascadesMorphMap,
-        CreatedBy,
-        HasFactory,
-        Reactable,
-        UpdatesOnTouch,
-        AvoidsDeletionConflicts;
+    use CascadesMorphMap, CreatedBy, HasFactory, Reactable;
+    use UpdatesOnTouch, AvoidsDeletionConflicts;
 
     protected $guarded = ['id'];
 
@@ -48,7 +45,7 @@ class Discussion extends Model
 
     public function getLoggableMorph()
     {
-        return config('enso.discussions.loggableMorph');
+        return Config::get('enso.discussions.loggableMorph');
     }
 
     public function delete()
