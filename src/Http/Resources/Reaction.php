@@ -3,7 +3,7 @@
 namespace LaravelEnso\Discussions\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use LaravelEnso\Core\Http\Resources\User;
+use LaravelEnso\Users\Http\Resources\User;
 
 class Reaction extends JsonResource
 {
