@@ -12,8 +12,7 @@ class Toggle extends Controller
 {
     public function __invoke(Request $request)
     {
-        $reactable = Relation::getMorphedModel($request->get('reactableType'))
-            ::find($request->get('reactableId'));
+        $reactable = Relation::getMorphedModel($request->get('reactableType'))::find($request->get('reactableId'));
 
         Reaction::toggle($reactable, $request->only(['userId', 'type']));
 
